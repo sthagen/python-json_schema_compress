@@ -6,4 +6,4 @@ import json_schema_compress.json_schema_compress as jsc
 
 def test_walk_ok_empty_array():
     job = ['[]']
-    assert jsc.process(empty) == job[0]
+    assert jsc.process(job) == job[0]
