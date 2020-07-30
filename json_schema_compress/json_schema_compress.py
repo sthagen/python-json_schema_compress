@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=missing-docstring
-import sys
+# pylint: disable=line-too-long
+"""Add logical documentation here later TODO."""
+import json
 
-from json_schema_compress.cli import main
 
-if __name__ == "__main__":  # pragma: no cover
-    sys.exit(main(sys.argv[1:]))
+def process(data):
+    """Model documentation ... TODO."""
+    return json.dumps(json.loads(data[0]))
