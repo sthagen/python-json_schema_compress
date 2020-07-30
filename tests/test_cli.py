@@ -6,7 +6,7 @@ import json_schema_compress.cli as cli
 
 
 def test_main_ok_empty_array(capsys):
-    empty = '[]'
-    assert cli.main(empty) is None
+    job = ['[]']
+    assert cli.main(job) is None
     out, err = capsys.readouterr()
-    assert out.strip() == empty
+    assert out.strip() == job[0]
