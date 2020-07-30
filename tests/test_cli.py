@@ -20,6 +20,13 @@ def test_main_ok_empty_object(capsys):
     assert out.strip() == job[0]
 
 
+def test_main_ok_direct_json_text(capsys):
+    job = ['{"a": "b", "c": 42, "d": [1, true, false, null, 3.1415, -999999999999999999999]}']
+    assert cli.main(job) is None
+    out, err = capsys.readouterr()
+    assert out.strip() == job[0]
+
+
 def test_main_nok_wrong_type_string():
     bad = "bad"
     message = r"Expecting value: line 1 column 1 \(char 0\)"
