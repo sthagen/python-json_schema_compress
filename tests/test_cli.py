@@ -17,3 +17,10 @@ def test_main_ok_empty_object(capsys):
     assert cli.main(job) is None
     out, err = capsys.readouterr()
     assert out.strip() == job[0]
+
+
+def test_main_nok_wrong_type_string():
+    bad = "bad"
+    message = r"object of type 'type' has no len\(\)"
+    with pytest.raises(TypeError, match=message):
+        cli.main(bad)
