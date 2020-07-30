@@ -10,3 +10,10 @@ def test_main_ok_empty_array(capsys):
     assert cli.main(job) is None
     out, err = capsys.readouterr()
     assert out.strip() == job[0]
+
+
+def test_main_ok_empty_object(capsys):
+    job = ['{}']
+    assert cli.main(job) is None
+    out, err = capsys.readouterr()
+    assert out.strip() == job[0]
