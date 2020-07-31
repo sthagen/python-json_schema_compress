@@ -34,8 +34,8 @@ def test_process_ok_direct_json_text_single_description_member_newline_only(caps
 
 
 def test_process_ok_direct_json_text_single_description_member_no_edn_token(capsys):
-    job = [r'{"a": "b", "c": 42, "description": "The thing does stuff endlessly \t\v\r without any full stop or newline"}']
-    compressed = r'{"a": "b", "c": 42, "description": "The thing does stuff endlessly \t\v\r without any full stop or newline"}'
+    job = [r'{"a": "b", "c": 42, "description": "The thing does stuff endlessly without any full stop or newline"}']
+    compressed = r'{"a": "b", "c": 42, "description": "The thing does stuff endlessly without any full stop or newline"}'
     assert jsc.process(job) == compressed
 
 
