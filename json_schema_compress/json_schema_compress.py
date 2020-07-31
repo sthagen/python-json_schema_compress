@@ -19,10 +19,17 @@ def keep_first_sentence_only(value):
 
 
 def visit(predicate, compressor, tree):
-    """Naive initial tree visitor compressing values based on predicate."""
-    for key in tree:
-        if predicate(key):
-            tree[key] = compressor(tree[key])
+    """Initial tree visitor implementation compressing values based on predicate."""
+    if isinstance(tree, (dict, list)):
+        if isinstance(tree, dict):
+            for key, value in tree.items():
+                if predicate(key):
+                    tree[key] = compressor(value)
+                elif isinstance(value, (dict, list)):
+                    visit(predicate, compressor, value)
+        else:
+            for value in tree:
+                visit(predicate, compressor, value)
 
 
 def process(data):
