@@ -21,6 +21,11 @@ def test_process_ok_direct_json_text(capsys):
     assert jsc.process(job) == job[0]
 
 
+def test_process_ok_direct_json_text_single_description_member(capsys):
+    job = ['{"a": "b", "c": 42, "description": "The thing does stuff.\n\n But not yet enough"}']
+    assert jsc.process(job) == job[0]
+
+
 def test_process_nok_wrong_type_string():
     bad = ["bad"]
     message = r"Expecting value: line 1 column 1 \(char 0\)"
