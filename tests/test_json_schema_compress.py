@@ -27,6 +27,12 @@ def test_process_ok_direct_json_text_single_description_member_full_stop(capsys)
     assert jsc.process(job) == compressed
 
 
+def test_process_ok_direct_json_text_two_description_members(capsys):
+    job = [r'{"a": {"description": "An A. Of course"}}, "b": {"description": "A B. Maybe"}}}']
+    compressed = r'{"a": {"description": "An A.}}, "b": {"description": "A B.}}}'
+    assert jsc.process(job) == compressed
+
+
 def test_process_ok_direct_json_text_single_description_member_newline_only(capsys):
     job = [r'{"a": "b", "c": 42, "description": "The thing does stuff\n\n But not yet enough"}']
     compressed = r'{"a": "b", "c": 42, "description": "The thing does stuff"}'
