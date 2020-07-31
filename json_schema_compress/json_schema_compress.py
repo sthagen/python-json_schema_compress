@@ -23,7 +23,6 @@ def visit(predicate, compressor, tree):
     for key in tree:
         if predicate(key):
             tree[key] = compressor(tree[key])
-    return tree
 
 
 def process(data):
