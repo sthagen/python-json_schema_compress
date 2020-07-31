@@ -6,4 +6,5 @@ import json
 
 def process(data):
     """Model documentation ... TODO."""
-    return json.dumps(json.loads(data[0]))
+    hosted = json.loads(data[0])
+    return json.dumps(hosted)
