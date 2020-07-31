@@ -12,6 +12,6 @@ def process(data):
             value = hosted[key]
             if '.' in value:
                 hosted[key] = f"{value.split('.', 1)[0]}."
-            elif r'\n' in value:
-                hosted[key] = value.split(r'\n', 1)[0]
+            elif '\n' in value:
+                hosted[key] = value.split('\n', 1)[0]
     return json.dumps(hosted)
