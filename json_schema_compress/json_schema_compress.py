@@ -29,5 +29,5 @@ def visit(predicate, compressor, tree):
 def process(data):
     """Model documentation ... TODO."""
     tree = json.loads(data[0])
-    visit(tree)
+    visit(is_description, keep_first_sentence_only, tree)
     return json.dumps(tree)
