@@ -55,7 +55,9 @@ def test_process_nok_wrong_type_string():
 def test_extract_paths_ok_direct_simple_json_text(capsys):
     job = [r'{"a": "b", "c": 42, "description": "The thing does stuff."}']
     screen_display = (
-        ''
+        'a\n'
+        'c\n'
+        'description'
     )
     assert jsc.extract_paths(jsc.anything, jsc.printer, json.loads(job[0])) is None
     out, err = capsys.readouterr()
