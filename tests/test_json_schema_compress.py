@@ -52,13 +52,11 @@ def test_process_nok_wrong_type_string():
         jsc.process(bad)
 
 
-def test_extract_paths_ok_direct_simple_json_text(capsys):
+def test_extract_paths_ok_direct_simple_json_text():
     job = [r'{"a": "b", "c": 42, "description": "The thing does stuff."}']
-    screen_display = (
-        'a\n'
-        'c\n'
-        'description'
-    )
-    assert jsc.extract_paths(jsc.anything, jsc.printer, json.loads(job[0])) is None
-    out, err = capsys.readouterr()
-    assert out.strip() == screen_display
+    assert jsc.extract_paths(json.loads(job[0])) == ['a', 'c', 'description']
+
+
+def test_extract_paths_ok_direct_nested_json_text():
+    job = [r'{"a": {"a1": "b1", "a2": -1}, "c": 42, "d": [1, 2, 3]}']
+    assert jsc.extract_paths(json.loads(job[0])) == ['a/a1', 'a/a2', 'c', 'd']

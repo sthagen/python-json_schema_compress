@@ -3,6 +3,8 @@
 """Add logical documentation here later TODO."""
 import json
 
+JSONPATH_SEPARATOR = "/"
+
 
 def is_description(key):
     """Simple matcher."""
@@ -43,19 +45,18 @@ def visit(predicate, compressor, tree):
                 visit(predicate, compressor, value)
 
 
-def extract_paths(predicate, extractor, tree):
+def extract_paths(tree, path=''):
     """Initial tree visitor implementation extracting paths based on predicate."""
+    paths = []
     if isinstance(tree, (dict, list)):
         if isinstance(tree, dict):
             for key, value in tree.items():
-                if predicate(key):
-                    extractor(key)
-                    tree[key] = value
-                elif isinstance(value, (dict, list)):
-                    visit(predicate, extractor, value)
-        else:
-            for value in tree:
-                visit(predicate, extractor, value)
+                new_path = path + JSONPATH_SEPARATOR + key if path else key
+                if isinstance(value, dict):
+                    paths.extend(extract_paths(value, path=new_path))
+                else:
+                    paths.append(new_path)
+            return paths
 
 
 def process(data):
