@@ -50,3 +50,13 @@ def test_process_nok_wrong_type_string():
     message = r"Expecting value: line 1 column 1 \(char 0\)"
     with pytest.raises(json.decoder.JSONDecodeError, match=message):
         jsc.process(bad)
+
+
+def test_extract_paths_ok_direct_simple_json_text(capsys):
+    job = [r'{"a": "b", "c": 42, "description": "The thing does stuff."}']
+    screen_display = (
+        ''
+    )
+    assert jsc.extract_paths(jsc.anything, jsc.printer, json.loads(job[0])) is None
+    out, err = capsys.readouterr()
+    assert out.strip() == screen_display
